@@ -1,0 +1,50 @@
+// 3) 
+import java.util.Arrays;
+
+public class Statistics {
+    public static void main(String[] args) {
+        // Given array
+        int[] array = {2, 5, 5, 9, 4, 7, 0, 9, 6, 11, 12};
+
+        // Calculate mean
+        double mean = calculateMean(array);
+        System.out.println("Mean: " + mean);
+
+        // Calculate median
+        double median = calculateMedian(array);
+        System.out.println("Median: " + median);
+
+        // Calculate standard deviation
+        double stdDev = calculateStandardDeviation(array, mean);
+        System.out.println("Standard Deviation: " + stdDev);
+    }
+
+    // Method to calculate mean
+    public static double calculateMean(int[] array) {
+        int sum = 0;
+        for (int num : array) {
+            sum += num;
+        }
+        return (double) sum / array.length;
+    }
+
+    // Method to calculate median
+    public static double calculateMedian(int[] array) {
+        Arrays.sort(array);
+        int n = array.length;
+        if (n % 2 == 0) {
+            return (array[n / 2 - 1] + array[n / 2]) / 2.0;
+        } else {
+            return array[n / 2];
+        }
+    }
+
+    // Method to calculate standard deviation
+    public static double calculateStandardDeviation(int[] array, double mean) {
+        double sumSquaredDifferences = 0;
+        for (int num : array) {
+            sumSquaredDifferences += Math.pow(num - mean, 2);
+        }
+        return Math.sqrt(sumSquaredDifferences / array.length);
+    }
+}
